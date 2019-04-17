@@ -55,6 +55,8 @@ namespace RuntimeProfiler
         ProfId_PipsPager,
         ProfId_ImageIcon,
         ProfId_AnimatedIcon,
+        ProfId_FlexboxLayout,
+        ProfId_GridLayout,
         ProfId_Size // ProfId_Size is the last always. 
     } ProfilerClassId;
 
