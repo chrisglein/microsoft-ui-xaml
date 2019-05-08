@@ -256,7 +256,7 @@ namespace MUXControlsTestApp
                     MinItemHeight = 150,
                     MinRowSpacing = double.Parse(itemSpacing.Text),
                     MinColumnSpacing = double.Parse(lineSpacing.Text),
-                    ItemsJustification = (UniformGridLayoutItemsJustification)Enum.Parse(typeof(UniformGridLayoutItemsJustification), lineAlignment.Text),
+                    ItemsJustification = (UniformGridLayoutItemsJustification)Enum.Parse(typeof(UniformGridLayoutItemsJustification), (string)lineAlignment.SelectedItem),
                     Orientation = orientation.IsOn ?  Orientation.Vertical: Orientation.Horizontal,
                 };
             }
@@ -272,7 +272,7 @@ namespace MUXControlsTestApp
                 {
                     MinRowSpacing = double.Parse(itemSpacing.Text),
                     MinColumnSpacing = double.Parse(lineSpacing.Text),
-                    LineAlignment = (FlowLayoutLineAlignment)Enum.Parse(typeof(FlowLayoutLineAlignment), lineAlignment.Text),
+                    LineAlignment = (FlowLayoutLineAlignment)Enum.Parse(typeof(FlowLayoutLineAlignment), (string)lineAlignment.SelectedItem),
                     Orientation = orientation.IsOn ? Orientation.Vertical : Orientation.Horizontal,
                 };
             }
