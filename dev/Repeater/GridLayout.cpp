@@ -211,7 +211,7 @@ int GridLayout::AxisInfo::EnsureIndexAvailable(int index, bool clampIfOutOfBound
         if (clampIfOutOfBounds)
         {
             // Clamp to the known set of indices
-            return Template.size() - 1;
+            return static_cast<int>(Template.size()) - 1;
         }
         else
         {

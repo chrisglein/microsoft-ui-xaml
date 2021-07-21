@@ -16,44 +16,19 @@
         </controls:LayoutPanel.Resources>
 
         <StackPanel>
-            <TextBlock Text="ItemsSource Samples" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="ItemsSource Samples" Style="{ThemeResource SubheaderTextBlockStyle}"/>
             <Button x:Name="itemsSourceDemo" AutomationProperties.Name="ItemsSource Demo">ItemsSource Demo</Button>
             <Button x:Name="collectionChangeDemo" AutomationProperties.Name="Collection Changes Demo" >Collection Changes Demo</Button>
             <Button x:Name="sortingAndFilteringDemo" AutomationProperties.Name="Sorting and Filtering Demo">Sorting and Filtering</Button>
         </StackPanel>
 
-        <StackPanel Spacing="4">
-            <TextBlock>Demos</TextBlock>
-            <Button x:Name="defaultDemo" >Default</Button>
-            <Button x:Name="basicDemo" >Basic</Button>
-            <Button x:Name="itemTemplateDemo" >ItemTemplate</Button>
-            <Button x:Name="collectionChangeDemo" >Collection Changes</Button>
-            <Button x:Name="animationsDemo" >Animations</Button>
-            <Button x:Name="circleLayoutDemo">Circle Layout</Button>
-            <Button x:Name="activityFeedLayoutDemo">Xbox Activity Feed Layout</Button>
-            <Button x:Name="nonVirtualStackLayoutDemo">Non Virtual Stack Layout</Button>
-            <Button x:Name="virtualFixedStackLayoutDemo">Virtual Fixed Stack Layout</Button>
-            <Button x:Name="virtualStackLayoutDemo">Virtual Variable Stack Layout (Estimated)</Button>
-            <Button x:Name="pinterestLayoutDemo">Pinterest Layout</Button>
-            <Button x:Name="flowLayoutDemo">Flow Layout</Button>
-            <Button x:Name="storeDemo">Store</Button>
-            <Button x:Name="animatedScrollDemo">Animated scroll</Button>
-            <Button x:Name="flexboxDemo">Flexbox Layout</Button>
-            <Button x:Name="gridDemo">Grid Layout</Button>
-            <TextBlock>Selection</TextBlock>
-            <StackPanel Orientation="Horizontal" Spacing="4">
-                <Button x:Name="flatSelectionDemo">Flat</Button>
-                <Button x:Name="groupedSelectionDemo">Grouped</Button>
-                <Button x:Name="treeSelectionDemo">Tree</Button>
-            </StackPanel>
-
         <StackPanel>
-            <TextBlock Text="ItemTemplate Samples" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="ItemTemplate Samples" Style="{ThemeResource SubheaderTextBlockStyle}"/>
             <Button x:Name="itemTemplateDemo" AutomationProperties.Name="ItemTemplate Demo">ItemTemplate Demo</Button>
         </StackPanel>
 
         <StackPanel>
-            <TextBlock Text="Layout Samples" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Layout Samples" Style="{ThemeResource SubheaderTextBlockStyle}"/>
             <Button x:Name="circleLayoutDemo" AutomationProperties.Name="Circle Layout Demo">Circle Layout Demo</Button>
             <Button x:Name="activityFeedLayoutDemo" AutomationProperties.Name="Xbox Activity Feed Layout Demo">Xbox Activity Feed Layout Demo</Button>
             <Button x:Name="nonVirtualStackLayoutDemo" AutomationProperties.Name="Non virtual Stack Layout Demo">Non Virtual Stack Layout Demo</Button>
@@ -62,11 +37,13 @@
             <Button x:Name="pinterestLayoutDemo" AutomationProperties.Name="Pinterest Layout Demo">Pinterest Layout Demo</Button>
             <Button x:Name="flowLayoutDemo" AutomationProperties.Name="Flow Layout Demo">Flow Layout Demo</Button>
             <Button x:Name="storeDemo" AutomationProperties.Name="Store demo">Nested Scrolling in both directions demo</Button>
+            <Button x:Name="flexboxDemo">Flexbox Layout</Button>
+            <Button x:Name="gridDemo">Grid Layout</Button>
         </StackPanel>
 
         <StackPanel>
             <TextBlock Text="Built in layouts" Style="{StaticResource SubheaderTextBlockStyle}" />
-            <StackPanel>
+            <StackPanel HorizontalAlignment="Left">
                 <TextBox x:Name="itemSpacing" Text="10" Header="ItemSpacing"></TextBox>
                 <TextBox x:Name="lineSpacing" Text="10" Header="MinColumnSpacing"></TextBox>
                 <ComboBox x:Name="lineAlignment" Header="LineAlignment" SelectedIndex="0">
@@ -98,20 +75,20 @@
         </StackPanel>
 
         <StackPanel>
-            <TextBlock Text="Animation Samples" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Animation Samples" Style="{ThemeResource SubheaderTextBlockStyle}"/>
             <Button x:Name="animationsDemo" AutomationProperties.Name="Animations Demo">Animations Demo</Button>
             <Button x:Name="animatedScrollDemo" AutomationProperties.Name="Animated scroll demo">Animated scroll demo</Button>
         </StackPanel>
 
         <StackPanel>
-            <TextBlock Text="Selection Samples" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Selection Samples" Style="{ThemeResource SubheaderTextBlockStyle}"/>
             <Button x:Name="flatSelectionDemo">Flat</Button>
             <Button x:Name="groupedSelectionDemo">Grouped</Button>
             <Button x:Name="treeSelectionDemo">Tree</Button>
         </StackPanel>
 
         <StackPanel>
-            <TextBlock Text="Other Samples" Style="{ThemeResource HeaderTextBlockStyle}"/>
+            <TextBlock Text="Other Samples" Style="{ThemeResource SubheaderTextBlockStyle}"/>
             <Button x:Name="defaultDemo" AutomationProperties.Name="Default Demo" >Default Demo</Button>
             <Button x:Name="basicDemo" AutomationProperties.Name="Basic Demo">Basic Demo</Button>
             <Button x:Name="uniformGridLayoutDemo" AutomationProperties.Name="UniformGridLayoutDemo">UniformGridLayout testing</Button>

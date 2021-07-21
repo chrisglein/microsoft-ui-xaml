@@ -104,10 +104,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Samples\FlowLayoutDemoPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Samples\Grid\GridAutoColumnsAndRowsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -149,10 +145,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Samples\Grid\GridTemplateColumnsAndRowsPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Samples\ItemsViewWithDataPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -235,6 +227,8 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Samples\ItemsSourceSamples\ElementsInItemsSourcePage.xaml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Samples\LayoutSamples\VirtualLayoutPages\FlowLayoutDemoPage.xaml.cs">
+      <DependentUpon>FlowLayoutDemoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Samples\Flexbox\FlexboxAlignContentPage.xaml.cs">
       <DependentUpon>FlexboxAlignContentPage.xaml</DependentUpon>
     </Compile>
@@ -267,9 +261,6 @@
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Samples\Flexbox\FlexboxWrapPage.xaml.cs">
       <DependentUpon>FlexboxWrapPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Samples\FlowLayoutDemoPage.xaml.cs">
-      <DependentUpon>FlowLayoutDemoPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Samples\Grid\GridAutoColumnsAndRowsPage.xaml.cs">
       <DependentUpon>GridAutoColumnsAndRowsPage.xaml</DependentUpon>

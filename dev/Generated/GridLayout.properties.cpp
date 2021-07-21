@@ -6,7 +6,12 @@
 #include "common.h"
 #include "GridLayout.h"
 
-CppWinRTActivatableClassWithDPFactory(GridLayout)
+namespace winrt::Microsoft::UI::Xaml::Controls
+{
+    CppWinRTActivatableClassWithDPFactory(GridLayout)
+}
+
+#include "GridLayout.g.cpp"
 
 GlobalDependencyProperty GridLayoutProperties::s_AlignSelfProperty{ nullptr };
 GlobalDependencyProperty GridLayoutProperties::s_ColumnEndProperty{ nullptr };

@@ -6,7 +6,12 @@
 #include "common.h"
 #include "GridTrackInfo.h"
 
-CppWinRTActivatableClassWithDPFactory(GridTrackInfo)
+namespace winrt::Microsoft::UI::Xaml::Controls
+{
+    CppWinRTActivatableClassWithDPFactory(GridTrackInfo)
+}
+
+#include "GridTrackInfo.g.cpp"
 
 GlobalDependencyProperty GridTrackInfoProperties::s_PlaceholderProperty{ nullptr };
 
@@ -37,7 +42,10 @@ void GridTrackInfoProperties::ClearProperties()
 
 void GridTrackInfoProperties::Placeholder(winrt::IInspectable const& value)
 {
+    [[gsl::suppress(con)]]
+    {
     static_cast<GridTrackInfo*>(this)->SetValue(s_PlaceholderProperty, ValueHelper<winrt::IInspectable>::BoxValueIfNecessary(value));
+    }
 }
 
 winrt::IInspectable GridTrackInfoProperties::Placeholder()

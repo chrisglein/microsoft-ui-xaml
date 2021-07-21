@@ -6,7 +6,12 @@
 #include "common.h"
 #include "FlexboxLayout.h"
 
-CppWinRTActivatableClassWithDPFactory(FlexboxLayout)
+namespace winrt::Microsoft::UI::Xaml::Controls
+{
+    CppWinRTActivatableClassWithDPFactory(FlexboxLayout)
+}
+
+#include "FlexboxLayout.g.cpp"
 
 GlobalDependencyProperty FlexboxLayoutProperties::s_AlignSelfProperty{ nullptr };
 GlobalDependencyProperty FlexboxLayoutProperties::s_GrowProperty{ nullptr };

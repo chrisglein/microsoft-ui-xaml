@@ -6,7 +6,12 @@
 #include "common.h"
 #include "GridLocation.h"
 
-CppWinRTActivatableClassWithDPFactory(GridLocation)
+namespace winrt::Microsoft::UI::Xaml::Controls
+{
+    CppWinRTActivatableClassWithDPFactory(GridLocation)
+}
+
+#include "GridLocation.g.cpp"
 
 GlobalDependencyProperty GridLocationProperties::s_PlaceholderProperty{ nullptr };
 
@@ -37,7 +42,10 @@ void GridLocationProperties::ClearProperties()
 
 void GridLocationProperties::Placeholder(winrt::IInspectable const& value)
 {
+    [[gsl::suppress(con)]]
+    {
     static_cast<GridLocation*>(this)->SetValue(s_PlaceholderProperty, ValueHelper<winrt::IInspectable>::BoxValueIfNecessary(value));
+    }
 }
 
 winrt::IInspectable GridLocationProperties::Placeholder()

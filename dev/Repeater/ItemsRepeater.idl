@@ -96,7 +96,7 @@ enum FlexboxDirection
     ColumnReverse = 2
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum FlexboxWrap
 {
@@ -105,7 +105,7 @@ enum FlexboxWrap
     WrapReverse = 2
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum FlexboxJustifyContent
 {
@@ -117,7 +117,7 @@ enum FlexboxJustifyContent
     SpaceEvenly = 5
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum FlexboxAlignItems
 {
@@ -127,7 +127,7 @@ enum FlexboxAlignItems
     Stretch = 3
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum FlexboxAlignContent
 {
@@ -140,7 +140,7 @@ enum FlexboxAlignContent
     SpaceEvenly = 6
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum FlexboxAlignSelf
 {
@@ -151,7 +151,7 @@ enum FlexboxAlignSelf
     Stretch = 4,
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum GridJustifyItems
 {
@@ -161,7 +161,7 @@ enum GridJustifyItems
     Stretch = 3,
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum GridAlignItems
 {
@@ -171,7 +171,7 @@ enum GridAlignItems
     Stretch = 3,
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum GridJustifyContent
 {
@@ -184,7 +184,7 @@ enum GridJustifyContent
     SpaceEvenly = 6
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum GridAlignContent
 {
@@ -197,7 +197,7 @@ enum GridAlignContent
     SpaceEvenly = 6
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum GridAutoFlow
 {
@@ -205,7 +205,7 @@ enum GridAutoFlow
     Column = 1
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum GridJustifySelf
 {
@@ -216,7 +216,7 @@ enum GridJustifySelf
     Stretch = 4,
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 enum GridAlignSelf
 {
@@ -227,7 +227,7 @@ enum GridAlignSelf
     Stretch = 4,
 };
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 delegate void ElementAnimationCompleted(ElementAnimator sender, Windows.UI.Xaml.UIElement element);
 
@@ -761,7 +761,7 @@ unsealed runtimeclass SelectionModel : Windows.UI.Xaml.Data.INotifyPropertyChang
     protected void OnPropertyChanged(String propertyName);
 }
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 [MUX_PROPERTY_CHANGED_CALLBACK(TRUE)]
 [MUX_PROPERTY_CHANGED_CALLBACK_METHODNAME("OnPropertyChanged")]
@@ -796,7 +796,7 @@ unsealed runtimeclass FlexboxLayout : NonVirtualizingLayout
     static FlexboxAlignSelf GetAlignSelf(Windows.UI.Xaml.UIElement element);
 }
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 unsealed runtimeclass GridTrackInfo : Windows.UI.Xaml.DependencyObject
 {
@@ -813,7 +813,7 @@ unsealed runtimeclass GridTrackInfo : Windows.UI.Xaml.DependencyObject
     Double Percentage{ get; set; };
 }
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 unsealed runtimeclass GridLocation : Windows.UI.Xaml.DependencyObject
 {
@@ -828,7 +828,7 @@ unsealed runtimeclass GridLocation : Windows.UI.Xaml.DependencyObject
     Int32 Span{ get; set; };
 }
 
-[WUXC_VERSION_PREVIEW]
+[MUX_PREVIEW]
 [webhosthidden]
 [MUX_PROPERTY_CHANGED_CALLBACK(TRUE)]
 [MUX_PROPERTY_CHANGED_CALLBACK_METHODNAME("OnPropertyChanged")]
