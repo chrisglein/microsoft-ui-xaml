@@ -144,7 +144,7 @@ void FlexboxLayout::UninitializeForContextCore(winrt::LayoutContext const& conte
 }
 
 winrt::Size FlexboxLayout::MeasureOverride(
-    winrt::LayoutContext const& context,
+    winrt::NonVirtualizingLayoutContext const& context,
     winrt::Size const& availableSize)
 {
     auto state = context.LayoutState().as<FlexboxLayoutState>();
@@ -229,7 +229,7 @@ winrt::Size FlexboxLayout::MeasureOverride(
 }
 
 winrt::Size FlexboxLayout::ArrangeOverride(
-    winrt::LayoutContext const& context,
+    winrt::NonVirtualizingLayoutContext const& context,
     winrt::Size const& finalSize)
 {
     auto state = context.LayoutState().as<FlexboxLayoutState>();

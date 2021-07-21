@@ -33,8 +33,8 @@ public:
     void InitializeForContextCore(winrt::LayoutContext const& context);
     void UninitializeForContextCore(winrt::LayoutContext const& context);
 
-    winrt::Size MeasureOverride(winrt::LayoutContext const& context, winrt::Size const& availableSize);
-    winrt::Size ArrangeOverride(winrt::LayoutContext const& context, winrt::Size const& finalSize);
+    winrt::Size MeasureOverride(winrt::NonVirtualizingLayoutContext const& context, winrt::Size const& availableSize);
+    winrt::Size ArrangeOverride(winrt::NonVirtualizingLayoutContext const& context, winrt::Size const& finalSize);
 #pragma endregion
 
     static void OnChildPropertyChanged(

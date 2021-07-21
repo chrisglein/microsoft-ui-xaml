@@ -848,7 +848,7 @@ void GridLayout::UninitializeForContextCore(winrt::LayoutContext const& context)
 }
 
 winrt::Size GridLayout::MeasureOverride(
-    winrt::LayoutContext const& context,
+    winrt::NonVirtualizingLayoutContext const& context,
     winrt::Size const& availableSize)
 {
     //DumpBegin(availableSize, "Measure");
@@ -931,7 +931,7 @@ winrt::Size GridLayout::MeasureOverride(
 }
 
 winrt::Size GridLayout::ArrangeOverride(
-    winrt::LayoutContext const& context,
+    winrt::NonVirtualizingLayoutContext const& context,
     winrt::Size const& finalSize)
 {
     //DumpBegin(finalSize, "Arrange");
