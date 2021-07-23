@@ -13,6 +13,7 @@
 #include "pch.h"
 #include "common.h"
 
+#ifndef BUILD_WINDOWS
 
 #include "XamlMetadataProvider.h"
 #include "XamlMetadataProviderGenerated.h"
