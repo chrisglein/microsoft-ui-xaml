@@ -3,9 +3,15 @@
 
 #pragma once
 
+#include <pch.h>
 #include "NonVirtualizingLayout.h"
 #include "FlexboxLayout.g.h"
 #include "FlexboxLayout.properties.h"
+#include "ItemsRepeater.h"
+#include "ItemsRepeater.g.h"
+#include "ItemsRepeater.properties.h"
+
+
 
 class FlexboxLayout :
     public ReferenceTracker<FlexboxLayout, winrt::implementation::FlexboxLayoutT, NonVirtualizingLayout>,
@@ -44,14 +50,15 @@ public:
     void OnPropertyChanged(const winrt::DependencyPropertyChangedEventArgs& args);
 
 private:
-    bool IsHorizontal();
-    bool IsReversed();
-    bool IsWrapping();
+    bool IsHorizontal() const;
+    bool IsReversed() const;
+    bool IsWrapping() const;
     float MainAxis(winrt::Size const& value);
     float CrossAxis(winrt::Size const& value);
     winrt::Size CreateSize(float mainAxis, float crossAxis);
     winrt::Point CreatePoint(float mainAxis, float crossAxis);
     std::vector<winrt::UIElement> ChildrenSortedByOrder(winrt::NonVirtualizingLayoutContext const& context);
+    std::vector<winrt::UIElement> ChildrenInitial(winrt::NonVirtualizingLayoutContext const& ci);
 
     winrt::FlexboxWrap m_wrap;
     winrt::FlexboxDirection m_direction;
