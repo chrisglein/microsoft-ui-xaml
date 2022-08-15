@@ -9,11 +9,12 @@ class FlexboxLayoutState :
 public:
     struct RowMeasureInfo
     {
-    public:
         float MainAxis;
         float CrossAxis;
-        unsigned int Count;
+        int Count;
         float Grow;
+        float Shrink;
+        float Basis;
     };
 
     std::vector<RowMeasureInfo> Rows;

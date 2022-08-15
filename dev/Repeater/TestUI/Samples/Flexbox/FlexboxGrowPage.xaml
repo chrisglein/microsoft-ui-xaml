@@ -8,8 +8,8 @@
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-    <StackPanel>
+    <ScrollViewer>
+        <StackPanel>
         <StackPanel.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="White"/>
@@ -20,8 +20,8 @@
             </Style>
             <Style TargetType="Grid">
                 <Setter Property="Background" Value="Orange"/>
-                <Setter Property="MinWidth" Value="80"/>
-                <Setter Property="MinHeight" Value="50"/>
+             <!--   <Setter Property="MinWidth" Value="80"/> -->
+                <Setter Property="MinHeight" Value="50"/> 
                 <Setter Property="Margin" Value="6"/>
                 <Setter Property="CornerRadius" Value="6"/>
                 <Setter Property="BorderBrush" Value="Black"/>
@@ -32,8 +32,64 @@
                 <Setter Property="Margin" Value="0,0,0,20"/>
                 <Setter Property="HorizontalAlignment" Value="Left"/>
             </Style>
-        </StackPanel.Resources>
+            <Style  x:Key="WebviewStyle" TargetType="controls:WebView2">
+                <Setter Property="MinHeight" Value="700"></Setter>
+            </Style>
+            <Style x:Key="HeaderStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Left"/>
+            </Style>
+            </StackPanel.Resources>
 
+            <TextBlock Style="{StaticResource HeaderStyle}">Flexbox Grow 100px 100px 100px</TextBlock>
+            
+        <controls:LayoutPanel MinWidth="500">
+            <controls:LayoutPanel.Layout>
+                <controls:FlexboxLayout/>
+            </controls:LayoutPanel.Layout>
+            <Grid controls:FlexboxLayout.Grow="0" controls:FlexboxLayout.Basis="100" >
+                <TextBlock>0</TextBlock>
+            </Grid>
+            <Grid controls:FlexboxLayout.Grow="1" controls:FlexboxLayout.Basis="100">
+                <TextBlock>1</TextBlock>
+            </Grid>
+            <Grid controls:FlexboxLayout.Grow="0" controls:FlexboxLayout.Basis="100">
+                <TextBlock>0</TextBlock>
+            </Grid>
+        </controls:LayoutPanel>
+
+        <controls:WebView2 Source="https://codepen.io/matthewmachuca/pen/jOzvjXE" Style="{StaticResource WebviewStyle}" ></controls:WebView2>
+
+
+        <controls:LayoutPanel MinWidth="500">
+            <controls:LayoutPanel.Layout>
+                <controls:FlexboxLayout/>
+            </controls:LayoutPanel.Layout>
+            <Grid controls:FlexboxLayout.Basis="50" >
+                <TextBlock>50</TextBlock>
+            </Grid>
+            <Grid controls:FlexboxLayout.Basis="100">
+                <TextBlock>100</TextBlock>
+            </Grid>
+            <Grid controls:FlexboxLayout.Basis="150">
+                <TextBlock>150</TextBlock>
+            </Grid>
+        </controls:LayoutPanel>
+        <controls:LayoutPanel MinWidth="500">
+            <controls:LayoutPanel.Layout>
+                <controls:FlexboxLayout/>
+            </controls:LayoutPanel.Layout>
+            <Grid controls:FlexboxLayout.Basis="50" controls:FlexboxLayout.Grow="3">
+                <TextBlock>0</TextBlock>
+            </Grid>
+            <Grid controls:FlexboxLayout.Basis="100" controls:FlexboxLayout.Grow="2">
+                <TextBlock>0</TextBlock>
+            </Grid>
+            <Grid  controls:FlexboxLayout.Basis="150" controls:FlexboxLayout.Grow="1">
+                <TextBlock>0</TextBlock>
+            </Grid>
+        </controls:LayoutPanel>
+        
         <controls:LayoutPanel MinWidth="500">
             <controls:LayoutPanel.Layout>
                 <controls:FlexboxLayout/>
@@ -41,8 +97,8 @@
             <Grid controls:FlexboxLayout.Grow="0">
                 <TextBlock>0</TextBlock>
             </Grid>
-            <Grid controls:FlexboxLayout.Grow="0">
-                <TextBlock>0</TextBlock>
+            <Grid controls:FlexboxLayout.Grow="1">
+                <TextBlock>1</TextBlock>
             </Grid>
             <Grid controls:FlexboxLayout.Grow="0">
                 <TextBlock>0</TextBlock>
@@ -53,21 +109,6 @@
             <controls:LayoutPanel.Layout>
                 <controls:FlexboxLayout/>
             </controls:LayoutPanel.Layout>
-            <Grid controls:FlexboxLayout.Grow="0">
-                <TextBlock>0</TextBlock>
-            </Grid>
-            <Grid controls:FlexboxLayout.Grow="1">
-                <TextBlock>1</TextBlock>
-            </Grid>
-            <Grid controls:FlexboxLayout.Grow="0">
-                <TextBlock>0</TextBlock>
-            </Grid>
-        </controls:LayoutPanel>
-
-        <controls:LayoutPanel MinWidth="500">
-            <controls:LayoutPanel.Layout>
-                <controls:FlexboxLayout/>
-            </controls:LayoutPanel.Layout>
             <Grid controls:FlexboxLayout.Grow="1">
                 <TextBlock>1</TextBlock>
             </Grid>
@@ -83,16 +124,16 @@
             <controls:LayoutPanel.Layout>
                 <controls:FlexboxLayout/>
             </controls:LayoutPanel.Layout>
-            <Grid controls:FlexboxLayout.Grow="1">
-                <TextBlock>1</TextBlock>
-            </Grid>
             <Grid controls:FlexboxLayout.Grow="2">
                 <TextBlock>2</TextBlock>
             </Grid>
-            <Grid controls:FlexboxLayout.Grow="1">
-                <TextBlock>1</TextBlock>
+            <Grid controls:FlexboxLayout.Grow="0">
+                <TextBlock>0</TextBlock>
+            </Grid>
+            <Grid controls:FlexboxLayout.Grow="0">
+                <TextBlock>0</TextBlock>
             </Grid>
         </controls:LayoutPanel>
     </StackPanel>
-    
+</ScrollViewer>
 </Page>

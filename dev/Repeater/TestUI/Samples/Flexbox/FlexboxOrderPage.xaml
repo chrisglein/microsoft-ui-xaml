@@ -33,7 +33,6 @@
                 <Setter Property="HorizontalAlignment" Value="Left"/>
             </Style>
         </StackPanel.Resources>
-
         <controls:LayoutPanel>
             <controls:LayoutPanel.Layout>
                 <controls:FlexboxLayout/>
@@ -87,6 +86,6 @@
                 <TextBlock>2</TextBlock>
             </Grid>
         </controls:LayoutPanel>
+        
     </StackPanel>
-
 </Page>

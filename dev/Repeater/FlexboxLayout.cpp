@@ -62,17 +62,17 @@ void FlexboxLayout::AlignContent(winrt::FlexboxAlignContent const& value)
     m_alignContent = value;
 }
 
-bool FlexboxLayout::IsHorizontal()
+bool FlexboxLayout::IsHorizontal() const
 {
     return (m_direction == winrt::FlexboxDirection::Row || m_direction == winrt::FlexboxDirection::RowReverse);
 }
 
-bool FlexboxLayout::IsReversed()
+bool FlexboxLayout::IsReversed() const
 {
     return (m_direction == winrt::FlexboxDirection::RowReverse || m_direction == winrt::FlexboxDirection::ColumnReverse);
 }
 
-bool FlexboxLayout::IsWrapping()
+bool FlexboxLayout::IsWrapping() const
 {
     return (m_wrap != winrt::FlexboxWrap::NoWrap);
 }
@@ -86,6 +86,7 @@ float FlexboxLayout::CrossAxis(winrt::Size const& value)
 {
     return (IsHorizontal() ? value.Height : value.Width);
 }
+
 
 winrt::Size FlexboxLayout::CreateSize(float mainAxis, float crossAxis)
 {
@@ -105,14 +106,15 @@ std::vector<winrt::UIElement> FlexboxLayout::ChildrenSortedByOrder(winrt::NonVir
 {
     std::vector<winrt::UIElement> sorted;
 
+   
     for (auto const& child : context.Children())
     {
         sorted.push_back(child);
     }
     std::sort(sorted.begin(), sorted.end(), [](winrt::UIElement const& a, winrt::UIElement const& b)
-    {
-        return (GetOrder(a) - GetOrder(b));
-    });
+        {
+            return (GetOrder(a) < GetOrder(b));
+        });
 
     return sorted;
 }
@@ -120,7 +122,7 @@ std::vector<winrt::UIElement> FlexboxLayout::ChildrenSortedByOrder(winrt::NonVir
 void FlexboxLayout::InitializeForContextCore(winrt::LayoutContext const& context)
 {
     auto state = context.LayoutState();
-    winrt::com_ptr<FlexboxLayoutState> flexboxState = nullptr;
+    auto flexboxState = state.try_as<FlexboxLayoutState>();
     if (state)
     {
         flexboxState = state.as<FlexboxLayoutState>();
@@ -152,6 +154,7 @@ winrt::Size FlexboxLayout::MeasureOverride(
 
     unsigned int itemsInRow = 0;
     float growInRow = 0.0;
+    float shrinkInRow = 0.0;
 
     float usedInCurrentMainAxis = 0;
     float usedInCurrentCrossAxis = 0;
@@ -166,55 +169,66 @@ winrt::Size FlexboxLayout::MeasureOverride(
         newRow.CrossAxis = usedInCurrentCrossAxis;
         newRow.Count = itemsInRow;
         newRow.Grow = growInRow;
+        newRow.Shrink = shrinkInRow;
         state->Rows.emplace_back(newRow);
 
         itemsInRow = 0;
         growInRow = 0.0;
+        
+        shrinkInRow = 0.0;
         usedMainAxis = std::max(usedMainAxis, usedInCurrentMainAxis);
         usedInCurrentMainAxis = 0;
         usedCrossAxis += usedInCurrentCrossAxis;
         usedInCurrentCrossAxis = 0;
+
+
+
     };
+   
+    
 
     std::vector<winrt::UIElement> sortedChildren = ChildrenSortedByOrder(context.try_as<winrt::NonVirtualizingLayoutContext>());
     for (winrt::UIElement const& child : sortedChildren)
     {
+        
+
         // Give each child the maximum available space
-        // TODO: What about flex-shrink? Should we try them with less?
-        // TODO: This is where flex-basis would come into play
         child.Measure(availableSize);
         winrt::Size childDesiredSize = child.DesiredSize();
 
-        if (usedInCurrentMainAxis + MainAxis(childDesiredSize) > MainAxis(availableSize))
-        {
-            // Not enough space, time for a new row
-            if (IsWrapping())
-            {
-                completeRow();
 
-                // It's possible that even making a new row won't work. Sorry, you're not going to fit!
-                if (usedCrossAxis + CrossAxis(childDesiredSize) > CrossAxis(availableSize))
+        auto flexBasis = static_cast<float>((GetBasis(child)));
+        if (flexBasis > 0) {
+          
+            childDesiredSize = CreateSize(flexBasis, CrossAxis(childDesiredSize));
+        }
+            if (usedInCurrentMainAxis + MainAxis(childDesiredSize) > MainAxis(availableSize))
+            {
+                // Not enough space, time for a new row
+                if (IsWrapping() )
                 {
-                    // TODO: What about flex-shrink?
-                    break;
+                    completeRow();
+
+                    // It's possible that even making a new row won't work. Sorry, you're not going to fit!
+                    if (usedCrossAxis + CrossAxis(childDesiredSize) > CrossAxis(availableSize))
+                    {
+                        
+                        break;
+                    }
+                }
+                else
+                {
+ 
+                   break;
                 }
             }
-            else
-            {
-                // Without the ability to wrap, we just flat out can't fit this item
-                // TODO: What about flex-shrink?
-                break;
-            }
-        }
-
         // Contribute our space
         usedInCurrentMainAxis += MainAxis(childDesiredSize);
         usedInCurrentCrossAxis = std::max(usedInCurrentCrossAxis, CrossAxis(childDesiredSize));
         itemsInRow++;
-        // PORT_TODO
-        //growInRow += GetGrow(child);
-    }
+        growInRow += static_cast<float>(GetGrow(child));
 
+    }
     // Incorporate any contribution from the pending row into our total calculation
     if (usedInCurrentMainAxis > 0)
     {
@@ -239,8 +253,6 @@ winrt::Size FlexboxLayout::ArrangeOverride(
     float crossOffsetForCurrentRow = 0;
     float usedInCurrentCrossAxis = 0;
 
-    // In reverse wrap mode we work our way from the bottom up
-    // TODO: Using finalSize here is causing us to right/bottom align, which probably isn't correct.
     if ((m_wrap == winrt::FlexboxWrap::WrapReverse) && (state->Rows.size() > 1))
     {
         crossOffsetForCurrentRow = CrossAxis(finalSize) - (state->Rows[state->Rows.size() - 1].CrossAxis);
@@ -251,10 +263,19 @@ winrt::Size FlexboxLayout::ArrangeOverride(
     {
         FlexboxLayoutState::RowMeasureInfo info = state->Rows[rowIndex];
 
+
         winrt::Size childDesiredSize = child.DesiredSize();
+
+  
+        auto flexBasis = static_cast<float>((GetBasis(child)));
+        if (flexBasis > 0) {
+
+            childDesiredSize = CreateSize(flexBasis, CrossAxis(childDesiredSize));
+        }
+
         if (usedInCurrentMainAxis + MainAxis(childDesiredSize) > MainAxis(finalSize))
         {
-            // If we're not wrapping just hide all the remaining elements
+            
             if (!IsWrapping())
             {
                 usedInCurrentMainAxis = MainAxis(finalSize);
@@ -279,7 +300,6 @@ winrt::Size FlexboxLayout::ArrangeOverride(
         float mainOffset = usedInCurrentMainAxis;
         float excessMainAxis = (MainAxis(finalSize) - info.MainAxis);
 
-        // Remove excess according to growing items
         float growSlice = 0.0;
         if (info.Grow > 0.0)
         {
@@ -287,7 +307,6 @@ winrt::Size FlexboxLayout::ArrangeOverride(
             excessMainAxis = 0.0;
         }
 
-        // Grow to take up leftover space according to the grow ratio
         float grow = static_cast<float>(GetGrow(child));
         if (grow > 0.0)
         {
@@ -332,7 +351,6 @@ winrt::Size FlexboxLayout::ArrangeOverride(
 
         float crossOffset = crossOffsetForCurrentRow;
         float excessCrossAxisInRow;
-        // If there's only one row then the cross axis size is actually the final arrange size
         if (state->Rows.size() == 1)
         {
             excessCrossAxisInRow = CrossAxis(finalSize) - CrossAxis(childDesiredSize);
@@ -420,8 +438,6 @@ winrt::Size FlexboxLayout::ArrangeOverride(
             break;
         }
 
-        // In Reversed mode we need to swap the coordinates so that items grom from right/bottom to left/top
-        // TODO: Using finalSize here means things will become right/bottom aligned, which doesn't seem right
         if (IsReversed())
         {
             mainOffset = MainAxis(finalSize) - mainOffset - MainAxis(childDesiredSize);
